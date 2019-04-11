@@ -46,9 +46,9 @@
 <jsp:include page="../../inc/head.jsp"></jsp:include>
 <div style="width: 30%;height: 40px">
 	<ul class="nav nav-tabs">
-		<li class="active"><a  href="http://localhost:8080/webapp/spxt/sjzl/sjzl.jsp" style="color:black">数据对比</a></li>
-		<li><a href="https://www.baidu.com/" style="color:black">xml监控</a></li>
-		<li><a href="https://www.baidu.com/" style="color:black">解压监控</a></li>
+		<li class="active" ><a  href="javascript:void(0);" style="color:black" onclick="sjjy()">数据校验</a></li>
+		<li><a href="#" style="color:black">xml监控</a></li>
+		<li><a href="#" style="color:black">解压监控</a></li>
 	</ul>
 </div>
 <div style="margin:0px 5px;padding: 0px;">
@@ -68,11 +68,7 @@
 	 	 				</td>
 	 	 				<td class="tab_right"></td>
 	 	 			</tr>
-	 	 			<tr>
-						<td class="tab_bottom_left"></td><td class="tab_bottom_center"></td><td class="tab_bottom_right">
-							<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>
-						</td>
-					</tr>
+	 	 			<tr><td class="tab_bottom_left"></td><td class="tab_bottom_center"></td><td class="tab_bottom_right"></td></tr>
 	 	 		</table>
 			</td>
 			<td valign="top" style="border: 1px solid #2FBBDC;">
@@ -106,7 +102,6 @@
 	 	 			-->
 	 	 			<div style="width: 100%;height: 30px;font-size: 13px;background-color: #F4F4F4;">
 	 	 			<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
-						<tr></tr>
 						<tr>
 							<td align="center" >
 							<%--  &nbsp;&nbsp;
@@ -173,42 +168,7 @@
 	}
 	
 	$(document).ready(function(){
-		bindRq();
-		//initTree([{'contentid':'ywcbContent','treeid':'ywcbTree','inputid':'ywcb','selected':['<%=fydm%>'],'expand':true,'hide':false,
-		//	'valueid':'ywcbValue','onClick':ywcbClick,'url':contextPath+'/webapp/spxt/sjzl/sjzl_tree.jsp?'+"FYDM="+fydm}]);
-		
-		//initTree([{'contentid':'gzContent','treeid':'gz_tree','inputid':'gz_text','expand':true,'hide':true,
-		//	'valueid':'gz','url':contextPath+'/webapp/spxt/sjzl/sjzl_gz_tree.jsp'}]);
-		
-		var wds = new Array();
-		
-			
-		wds.push({
-			'contentid':'ywcbContent',
-			'treeid':'ywcbTree',
-			'inputid':'ywcb',
-			'selected':['<%=fydm%>'],
-			'expand':true,
-			'hide':false,
-			'valueid':'ywcbValue',
-			'onClick':ywcbClick,
-			'url':contextPath+'/webapp/spxt/sjzl/sjzl_tree.jsp?'+"FYDM="+fydm
-		});
-			
-		wds.push({
-			'contentid':'gz_content',
-			'treeid':'gz_tree',
-			'inputid':'gz_text',
-			'expand':true,
-			'hide':true,
-			'valueid':'gz',
-			'url':contextPath+'/webapp/spxt/sjzl/sjzl_gz_tree.jsp'
-		});
-		
-		initTree(wds);
-		
-		sizeChange(true);
-		loadTable(1,true);
+
 	});
 
 	function ywcbClick(value){
@@ -276,4 +236,5 @@
 	}
 	
 </script>
+<script type='text/javascript' src='<%=CONTEXT_PATH%>/resources/js/tm1.js'></script>
 </html>
