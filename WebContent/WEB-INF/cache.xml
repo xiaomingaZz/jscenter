@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<caches>
+	<cache id="FrameTsBzdm"  class="tdh.frame.cache.impl.TsBzdmCacheLoader"></cache>
+	<cache id="TUser"   class="tdh.frame.cache.impl.TUserCacheLoader" ></cache>
+	<cache id="TDepart" class="tdh.frame.cache.impl.TDepartCacheLoader" ></cache>
+	<cache id="TsFymc"  class="tdh.frame.cache.impl.TsFymcCacheLoader" ></cache>
+	<cache id="TRole"   class="tdh.frame.cache.impl.TRoleCacheLoader" ></cache>
+</caches>

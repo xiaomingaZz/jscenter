@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+    <context:property-placeholder location="WEB-INF/config/jdbc.properties"/>
+    <context:component-scan base-package="tdh.web" />
+	<context:component-scan base-package="tdh.fxxt" />
+	
+
+	
+    <bean id="centerdataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${center.driverClassName}"></property>
+		<property name="url" value="${center.url}"></property>
+		<property name="username" value="${center.username}"></property>
+		<property name="password" value="${center.password}"></property>
+		<property name="maxActive" value="${center.maxActive}"></property>
+		<property name="maxIdle" value="${center.maxIdle}"></property>
+		<property name="maxWait" value="${center.maxWait}"></property>
+		<property name="defaultAutoCommit" value="${center.defaultAutoCommit}"></property>
+	</bean>
+	
+	<bean id="centertransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource"><ref local="centerdataSource" /></property>
+	</bean>
+	
+    <tx:annotation-driven transaction-manager="centertransactionManager" proxy-target-class="true" />
+    
+    <bean id="centerjdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource"><ref bean="centerdataSource"/></property>
+	</bean>
+	
+	<bean id="centerjdbcTemplateExt" class="tdh.framework.dao.springjdbc.JdbcTemplateExt">
+		<property name="dataSource"><ref bean="centerdataSource"/></property>
+	</bean>
+	
+	<bean id="centerPaginateJdbc"  class="tdh.frame.web.dao.jdbc.PaginateJdbc"> 
+		<property name="jdbcTemplate"><ref bean="centerjdbcTemplateExt" /></property> 
+	</bean> 
+ 
+</beans>

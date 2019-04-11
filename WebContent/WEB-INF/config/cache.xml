@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+db：同jdbc.properties命名,便于用来获取数据库连接
+tabName：表名
+-->
+<caches>
+  <!--
+  <cache tabName="TS_BZDM" db="zcxt"  >
+    <map mapName='convert' key="CODE" >
+    </map>
+  </cache>
+  
+  <cache tabName="TS_DM" db="zcxt" >
+    <map mapName='convert' key="KIND,CODE" keySp="-" >
+    </map>
+  </cache>
+  
+  
+  <cache tabName="TS_FYMC" db="dpzs" col="FYDM,DM,FJM,FDM,FYMC,FYJC,FYJB,TJBM,SFJY,FYDC,QHMC,QHJC,PXH" order="order by FYDM"  >
+    <map mapName='convert1' key="FYDM" ></map>
+    <map mapName='convert2' key="QHJC" ></map>
+  </cache>
+  -->
+</caches>

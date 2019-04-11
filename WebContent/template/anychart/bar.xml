@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anychart>
+  <margin all='-5'></margin>
+  <settings>
+    <animation enabled="True" />
+    <context_menu version_info="false"  about_anychart="false" />
+  </settings>
+  <charts>
+    <chart plot_type="CategorizedVertical">
+      <data_plot_settings default_series_type="Bar" enable_3d_mode="true">
+        <bar_series group_padding="0.5" >
+          <tooltip_settings enabled="True">
+            <format>{%Name}{%YValue}{numDecimals:0}</format>
+          </tooltip_settings>
+          <label_settings enabled="True">
+            <format>{%YValue}{numDecimals:0}</format>
+          </label_settings>
+        </bar_series>
+      </data_plot_settings>
+     
+      
+      <chart_settings>
+				<title enabled="true" padding="1">
+				<text>$title</text>
+				<font render_as_html="false" family="Microsoft YaHei" size="26" italic="False"  bold="True"  ></font>
+				
+				</title><!-- 标题设置 --> 
+				<legend enabled="false" position="Bottom" align="Center">
+					<title enabled="false"> 
+					</title>
+				</legend>
+				<axes> 
+					<x_axis enabled="true">
+						<title enabled='false'><text></text></title>
+						<labels rotation="35">
+						<font size="18" font-family='Microsoft YaHei' color="DarkColor(%Color)" />
+						</labels>
+						<minor_grid enabled="False" /> <!--细小表格去掉--> 
+					</x_axis>
+					<y_axis>
+						<title enabled="false"><text></text></title>
+						<labels align="Inside"> 
+							<format>{%Value}{numDecimals:0}</format> 
+							<!-- <font size="12" color="DarkColor(%Color)" />-->
+						</labels> 
+					</y_axis> 
+				</axes> 
+				<chart_background>
+					<border enabled="false" thickness="0.4" /> 
+					<fill enabled="fasle" /> 
+					<effects enabled="false" /> 
+				</chart_background> 
+			</chart_settings> 
+      <!-- palette='Default' series增加了参数palette--调色板之后，即使是一个系列，各柱子颜色也不一样，那么图例基本就没什么意义了 -->
+      <data>
+        <series name="本期数" type="Bar" >  
+          #foreach($data in $bqlist) 
+			<point name="$data.MC" y="$data.DATA" >	
+			</point>
+		  #end 
+        </series>
+        
+        <series name="同期数" type="Bar" >  
+          #foreach($data in $tqlist) 
+			<point name="$data.MC" y="$data.DATA" >	
+			</point>
+		  #end 
+        </series>
+      </data>
+    </chart>
+  </charts>
+</anychart>

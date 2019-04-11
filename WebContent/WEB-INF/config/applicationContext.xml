@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+    <context:property-placeholder location="WEB-INF/config/jdbc.properties"/>
+    <context:component-scan base-package="tdh" />
+	
+
+	
+    <bean id="bi09dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="maxActive" value="${jdbc.maxActive}"></property>
+		<property name="maxIdle" value="${jdbc.maxIdle}"></property>
+		<property name="maxWait" value="${jdbc.maxWait}"></property>
+		<property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}"></property>
+		<property name="logSql" value="true"/> <!--开启日志记录-->
+	</bean>
+	
+	<bean id="bi09transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource"><ref local="bi09dataSource" /></property>
+	</bean>
+	
+    <tx:annotation-driven transaction-manager="bi09transactionManager" proxy-target-class="true" />
+    
+    <bean id="bi09transactionProxy" abstract="true" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager"><ref bean="bi09transactionManager"/></property>
+      <property name="proxyTargetClass"><value>true</value></property>
+      <property name="transactionAttributes">
+         <props><prop key="*">PROPAGATION_REQUIRED</prop></props>
+      </property>
+    </bean>	
+    
+    <bean id="bi09jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource"><ref bean="bi09dataSource"/></property>
+	</bean>
+	
+	<bean id="bi09jdbcTemplateExt" class="tdh.framework.dao.springjdbc.JdbcTemplateExt">
+		<property name="dataSource"><ref bean="bi09dataSource"/></property>
+	</bean>
+	
+	<bean id="bi09PaginateJdbc"  class="tdh.frame.web.dao.jdbc.PaginateJdbc"> 
+		<property name="jdbcTemplate"><ref bean="bi09jdbcTemplateExt" /></property> 
+	</bean> 
+	
+	<import resource="applicationContext_center.xml" />
+	<import resource="applicationContext_xdb.xml" />
+ 	<import resource="applicationContext_export.xml" />
+</beans>

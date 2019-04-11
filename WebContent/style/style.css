@@ -1,0 +1,159 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/**
+ * 初始化浏览器默认样式
+ **/
+
+html,body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,input,button,textarea,p,span,table,th,td,from{margin:0;padding:0}
+body,input,button,select,textarea{font:12px/1.5 "微软雅黑", "宋体";color:#4c4c4c; overflow-x: hidden;}
+table{border-collapse:collapse;border-spacing:0}
+img,a img{border:0}
+a{color:#000;outline:medium none; cursor:pointer;text-decoration:none;star:expression(this.onFocus=this.blur())}
+a:hover{text-decoration:none}
+label{cursor:pointer}
+ul li,.ol li{list-style:none}
+em,cite,i{font-style:normal}
+body{ position:relative;background:url(../images/bg.png) center center no-repeat;}
+p{word-break: break-all;} /*全部英文字符下自动换行*/
+
+/* 去除Chrome等浏览器文本框默认发光边框 */
+input:focus, textarea:focus {outline: none;}
+area{outline: none; display:block; cursor:pointer}
+/* 去除IE10+浏览器文本框后面的小叉叉 */
+input::-ms-clear {display: none;}
+/* 禁止多行文本框textarea拖拽 */
+textarea {resize: none;}
+
+/* ==全局通用样式== */
+
+/* 避免因子元素浮动而导致的父元素高度缺失能问题 */
+.cl:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; } .cl { zoom: 1; }
+
+/* 浮动 */
+.z { float: left !important; }
+.y { float: right !important; }
+
+/* 鼠标样式，可以根据需要按序添加 */
+.cur1 { cursor: pointer; }
+
+/* 显示/隐藏 */
+.show { display: block !important; }
+.hide { display: none !important; }
+
+/* 相对定位 */
+.pos { position: relative; }
+
+/* 通用容器，定义页面宽度 具有 n, m, w 三个级别 */
+.wpn { width: 1000px; margin: 0 auto; }  	/* 4 列 * 300 */
+.row { width: 100% }
+
+/* 文本属性：字号、颜色、粗细、正斜 */
+/* 字号 */
+.f12 { font-size: 12px; }
+.f14 { font-size: 14px; }
+.f16 { font-size: 16px; }
+.f18 { font-size: 18px; }
+.f26 { font-size: 26px; }
+
+/* 粗细 */
+.b { font-weight: bold; }
+
+/* 正斜 */
+.i { font-style: italic; }
+
+/* 外边距样式，作用于元素的上下外边距，上下各具有 n, m, w 三个级别 */
+.mtn { margin-top: 5px !important; }
+.mtm { margin-top: 10px !important; }
+.mtw { margin-top: 20px !important; }
+
+.mbn { margin-bottom: 5px !important; }
+.mbm { margin-bottom: 10px !important; }
+.mbw { margin-bottom: 20px !important; }
+
+.mrn { margin-right: 5px !important; }
+.mrm { margin-right: 10px !important; }
+.mrw { margin-right: 20px !important; }/*20/1180=1.6949152%*/
+
+.mln { margin-left: 5px !important; }
+.mlm { margin-left: 10px !important; }
+.mlw { margin-left: 20px !important; }
+
+.mtbn { margin: 5px 0 !important; }
+.mtbm { margin: 10px 0 !important; }
+.mtbw { margin: 20px 0 !important; }
+
+.mlrn { margin: 0 5px !important; }
+.mlrm { margin: 0 10px !important; }
+.mlrw { margin: 0 20px !important; }
+
+
+/* 内边距样式，作用于元素的上下内边距，上下各具有 n, m, w 三个级别 */
+.ptn { padding-top: 5px !important; }
+.ptm { padding-top: 10px !important; }
+.ptw { padding-top: 20px !important; }
+
+.pbn { padding-bottom: 5px !important; }
+.pbm { padding-bottom: 10px !important; }
+.pbw { padding-bottom: 20px !important; }
+
+.ptbn { padding: 5px 0 !important; }
+.ptbm { padding: 10px 0 !important; }
+.ptbw { padding: 20px 0 !important; }
+
+.plrn { padding: 0 5px !important; }
+.plrm { padding: 0 10px !important; }
+.plrw { padding: 0 20px !important; }
+
+/*logo*/
+.logo{ position:absolute; top:30px; left:10px; width:36%;}
+.logo img{ width:100%;}
+.wp_right{ position:absolute; right:0; top:50px; background:url(../images/wp_right.png) top right no-repeat; background-size:contain;padding-left: 20%; text-align:center; width:476px; height:50px; line-height:50px; text-indent:10em;}
+.wp_right a{ color:#fff}
+.wp_right a:hover{ color:#ffd651}
+.wp_cent{  margin:0 auto; /*width:1327px;*/ width:100%; height:720px;}
+.wp_top{width:100%;}
+
+
+
+/*	BigVideo Styles 
+	You may need to adjust these styles to get this working right in your design. 
+*/
+#big-video-wrap{overflow:hidden;position:fixed;height:100%;width:100%;top:0;left:0; z-index:-99999}
+#big-video-vid,#big-video-image{position:absolute;}
+#big-video-control-container{position:fixed;bottom:0;padding:10px;width:100%;background:rgba(0,0,0,.25);
+  -webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;}
+#big-video-control{width:100%;height:16px;position:relative;}
+#big-video-control-middle{margin: 0 56px 0 24px;}
+#big-video-control-bar{width:100%;height:16px;position:relative;cursor:pointer;}
+#big-video-control-progress{position:absolute;top:7px;height:3px;width:0%;background:#fff;}
+#big-video-control-track{position:absolute;top:8px;height:1px;width:100%;background:#fff;}
+#big-video-control-bound-left{left:0;}
+#big-video-control-bound-right{right:-1px}
+#big-video-control-track .ui-slider-handle {opacity:0;}
+#big-video-control-playhead{left:30%;}
+#big-video-control-play{position:absolute;top:0;left:0;height:16px;width:16px;background-image:url('images/main2.jpg');}
+#big-video-control-timer{position:absolute;top:1px;right:0;color:#fff;font-size:11px;}
+#big-video-control-playhead,#big-video-control-bound-left,#big-video-control-bound-right{position:absolute;top:0;height:16px;width:1px;background:#fff;}
+#big-video-control .ui-slider-handle{border-left:solid 1px #fff; width:16px;height:16px;position:absolute;top:-8px;}
+.transparent{-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity:0;}
+.vjs-big-play-button{display:none !important;}
+
+#container{
+	height:720px;
+}
+.element {
+	width: 185px;
+	height: 200px;
+	text-align: center;
+	cursor: pointer;
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+.element1:hover {
+	box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
+	border: 1px solid rgba(127,255,255,0.75);
+}
+
+
+

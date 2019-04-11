@@ -1,0 +1,315 @@
+@CHARSET "UTF-8";
+
+body,html {
+	margin: 0px;
+	padding: 0px;
+	font-fimaly:微软雅黑;
+}
+
+a img{
+	outline:none;
+	border:none;
+}
+
+a:link    {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover   {text-decoration: none;}
+
+.logo_bg{
+	background: url("../images/logo_bg.png") repeat-x;
+	height: 80px;
+	width: 100%;
+}
+.logo_left{
+	background: url("../images/logo_left.png") no-repeat left;
+	margin: 0px;
+	padding: 0px;
+}
+.logo_right{
+	background: url("../images/logo_right.png") no-repeat right;
+}
+
+.mainContent {
+	margin:0px;
+	padding: 0px;
+	font-fimaly:微软雅黑;
+}
+
+.map_panel {
+	width: 595px;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	font-fimaly:微软雅黑;
+}
+
+.condtion_panel{
+	position: absolute;
+	left: 130px;top:148px;
+	font-size:18px;
+	z-index:99999;
+	font-fimaly:微软雅黑;
+}
+
+.condtion_bottom{
+	left: 30px;
+    position: absolute;
+    top: 460px;
+    z-index: 99999;
+	font-fimaly:微软雅黑;
+}
+
+.menu_title{
+	color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    right: 95px;
+    text-align: center;
+    top: 30px;
+    width: 150px;
+    z-index: 99999;
+	font-fimaly:微软雅黑;
+}
+
+.menu_click{
+	position: absolute;
+	top:30px;
+	right:65px;
+	font-size:26px;
+	color:#ffffff;
+	z-index:99999;
+	cursor:pointer;
+	width:40px;
+	font-fimaly:微软雅黑;
+}
+
+.menu_panel{
+	font-size:22px;
+	display:none;
+	color:#ffffff;
+	z-index:99999;
+	cursor:pointer;
+	position: absolute;
+    right: 60px;
+    top: 70px;
+    width: 200px;
+	font-fimaly:微软雅黑;
+}
+
+.menu_panel_bg{
+	padding-left:20px;
+	font-size:18px;
+	font-fimaly:微软雅黑;
+}
+
+.menu_panel_a{
+	color:#ffffff;
+	font-fimaly:微软雅黑;
+}
+
+.menu_panel_td_hover{
+	height:32px;
+	background:url(../images/xlk-dj_14.png);
+}
+
+.menu_panel_td{
+	height:32px;
+	background:url(../images/xlk-mid_12.png);
+}
+
+.menu_panel_split{
+	height:1px;
+	background:#71afe7;
+}
+.map_plus{
+	position: absolute;
+	left: 445px;top:95px;	
+	z-index:1000;
+}
+
+.chart_panel {
+	height:100%;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	left: 590px;
+	top:80px;
+}
+
+.tab_top_left {
+	width: 10px;
+	height: 11px;
+	background: url(../images/nrk/nrk_03.png)
+}
+
+.tab_top_center {
+	height: 11px;
+	background: url(../images/nrk/nrk_05.png)
+}
+
+.tab_top_right {
+	width: 10px;
+	height: 11px;
+	background: url(../images/nrk/nrk_07.png)
+}
+
+.tab_bottom_left {
+	width: 10px;
+	height: 11px;
+	background: url(../images/nrk/nrk_18.png)
+}
+
+.tab_bottom_center {
+	width: 10px;
+	height: 11px;
+	background: url(../images/nrk/nrk_20.png)
+}
+
+.tab_bottom_right {
+	width: 10px;
+	height: 11px;
+	background: url(../images/nrk/nrk_22.png)
+}
+
+.tab_left {
+	width: 10px;
+	background: url(../images/nrk/nrk_10.png)
+}
+
+.tab_right {
+	width: 10px;
+	background: url(../images/nrk/nrk_14.png)
+}
+
+.tab_center {
+	font-size: 14px;
+	background:url(../images/nrk/nrk_12.png)
+}
+
+input[type=radio].css-checkbox {
+	position: absolute;
+	z-index: -1000;
+	left: -1000px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
+input[type=radio].css-checkbox+label.css-label {
+	padding-left: 20px;
+	height: 15px;
+	display: inline-block;
+	line-height: 15px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+input[type=radio].css-checkbox:checked+label.css-label {
+	background-position: 0 -15px;
+}
+
+label.css-label {
+	background-image: url(../../resources/images/radio.png);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.table-body {
+	border: 0px solid #CCCCCC;
+	border-collapse: collapse;
+	font-size:13px;
+	background-color: #FFFFFF;
+}
+
+.table-header {
+	background-color: #F4F4F4;
+	height: 27px;
+	text-align: center;
+}
+
+.table-header-row,.table-row {
+	overflow: hidden;
+	cursor: default;
+	border: 0px solid #CCCCCC;
+	height: 30px;
+	text-align: center;
+}
+
+.table-header-th { 
+	border: 1px solid #CCCCCC;
+	font-size: 12px;
+	padding: 0px 2px;
+}
+
+.table-header-row td,.table-row td { 
+	border: 1px solid #CCCCCC;
+	font-size: 12px;
+	padding: 0px 2px;
+}
+
+.table-cell {
+	min-width: 55px;
+}
+
+.table-cell-mc {
+	padding: 0 4px;
+	width: 80px;
+	min-width: 50px;
+	text-align: left;
+}
+
+.table-header-row input[type=text],.table-row input[type=text] {
+	width: 100%;
+	cursor: default;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;
+	font-size: 13px;
+}
+
+.table-header-row input[type=text] {
+	text-align: center;
+}
+
+.table-cell input[type=text] {
+	text-align: center;
+}
+
+.table-cell-maxnum {
+	text-align: right;
+}
+
+.table-cell-rownumber {
+	background: url("../../resources/images/height_btl_07.png");
+	background-color: #F4F4F4;
+	width: 25px;
+	min-width: 22px;
+	text-align: center;
+}
+
+.selDate {
+	background: transparent url(../../resources/images/rl/rili_03.png)
+		no-repeat right;
+	border: 1px solid #CCCCCC;
+	text-align: left;
+	width: 120px;
+	height: 22px;
+	font-size: 12px;
+	padding-left: 4px;
+}
+
+.table_row{
+	overflow: hidden;
+	cursor: default;
+	border: 0px solid #CCCCCC;
+}

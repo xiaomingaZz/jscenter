@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<title>湖北法院管理平台</title>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+<script src="js/three.min.js"></script> 
+<script src="js/tween.min.js"></script> 
+<script src="js/TrackballControls.js"></script> 
+<script src="js/CSS3DRenderer.js"></script>
+
+
+<!-- BigVideo Dependencies -->
+<script src="js/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="../../js/jquery.min.js"><\/script>')</script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/video.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+    <!-- BigVideo -->
+<script src="js/bigvideo.js"></script>
+
+</head>
+
+<body>
+<div class="logo"><img src="images/logo_hubei.png"></div>
+<div class="wp_right"></div>
+<div class="cl wp_top"></div>
+<div id="container"></div>
+
+<script>
+
+$(function() {
+	//var BV = new $.BigVideo();
+	//BV.init();
+	//BV.show('earth.mp4',{ambient:true});
+});
+
+
+var tx=-10
+var ty=-40
+
+var table = [
+	"images/s1.png","",false,-600+tx,255+ty,
+	"images/s2.png","",false,-400+tx,255+ty,
+	"images/s20.png","webapp/spxt/jrdt/jrdt.jsp",true,-200+tx,255+ty,
+	"images/s18.png","webapp/spxt/hzqk_day/hzdt_day.jsp",true,0+tx,255+ty,
+	"images/s15-2.png","webapp/lljk/lljk_table_new.jsp",true,200+tx,255+ty,
+	"images/s6.png","",false,400+tx,255+ty,
+	"images/s7.png","",false,600+tx,255+ty,
+	
+	"images/s8.png","",false,-500+tx,85+ty,
+	"images/s8.png","",false,-300+tx,85+ty,
+	"images/s12-2.png","webapp/spxt/sjzl/sjzl.jsp",true,-100+tx,85+ty,
+	"images/s4-2.png","webapp/spxt/sjsjc/sjsjc.jsp",true,100+tx,85+ty,
+	"images/s8.png","",false,300+tx,85+ty,
+	"images/s13.png","",false,500+tx,85+ty,
+	
+	"images/s8.png","",false,-400+tx,-85+ty,
+	"images/s8.png","",false,-200+tx,-85+ty,
+	"images/s8.png","",false,0+tx,-85+ty,
+	"images/s8.png","",false,200+tx,-85+ty,
+	"images/s8.png","",false,400+tx,-85+ty
+];
+
+var camera, scene, renderer;
+var controls;
+
+var objects = [];
+var targets = { table: [], sphere: [], helix: [], grid: [] };
+
+//下面是延时加载
+var clearset = setInterval("j_wb()","1000");
+function j_wb(){
+	clearInterval(clearset);
+	init();
+	animate();
+}
+
+
+
+function init() {
+
+	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+	camera.position.z = 1000;
+
+	scene = new THREE.Scene();
+
+	// table
+
+	for ( var i = 0; i < table.length; i += 5 ) {
+
+		var element = document.createElement( 'div' );
+		element.className = 'element';
+		element.jumpURL = table[i+1]
+		element.style.cursor = 'default';
+		element.style.backgroundImage ='url('+table[i]+')';
+		
+		if(table[i+2] != false){
+			element.onmouseover = function (){
+				this.style.cursor = 'pointer';
+				this.style.width = 222+'px';
+				this.style.height = 240+'px';
+			}
+			element.onmouseout = function (){
+				this.style.cursor = 'pointer';
+				this.style.width = 185+'px';
+				this.style.height = 200+'px';
+			}
+			element.onmousedown = function (){
+				window.open(this.jumpURL,"_self");
+			}
+		}
+
+		var object = new THREE.CSS3DObject( element );
+		object.position.x = Math.random() * 1400 - 700;
+		object.position.y = Math.random() * 1400 - 700;
+		object.position.z = Math.random() * 1400 - 700;
+		scene.add( object );
+		objects.push( object );
+
+		var object = new THREE.Object3D();
+		object.position.x = table[i+3];
+		object.position.y = table[i+4];
+
+		targets.table.push( object );
+		
+		
+
+	}
+
+	//
+
+	renderer = new THREE.CSS3DRenderer();
+	renderer.setSize( window.innerWidth, window.innerHeight+280);
+	renderer.domElement.style.position = 'absolute';
+	document.getElementById( 'container' ).appendChild( renderer.domElement );
+
+	//
+
+	controls = new THREE.TrackballControls( camera, renderer.domElement );
+	controls.rotateSpeed = 0.5;
+	controls.minDistance = 500;
+	controls.maxDistance = 6000;
+	controls.addEventListener( 'change', render );
+
+	
+
+	transform( targets.table, 5000 );
+
+	//
+
+	window.addEventListener( 'resize', onWindowResize, false );
+
+}
+
+function transform( targets, duration ) {
+
+	TWEEN.removeAll();
+
+	for ( var i = 0; i < objects.length; i ++ ) {
+
+		var object = objects[ i ];
+		var target = targets[ i ];
+
+		new TWEEN.Tween( object.position )
+			.to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+			.easing( TWEEN.Easing.Exponential.InOut )
+			.start();
+
+		new TWEEN.Tween( object.rotation )
+			.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+			.easing( TWEEN.Easing.Exponential.InOut )
+			.start();
+
+	}
+
+	new TWEEN.Tween( this )
+		.to( {}, duration * 2 )
+		.onUpdate( render )
+		.start();
+
+}
+
+function onWindowResize() {
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
+	render();
+
+}
+
+function animate() {
+
+	requestAnimationFrame( animate );
+
+	TWEEN.update();
+
+	controls.update();
+
+}
+
+function render() {
+
+	renderer.render( scene, camera );
+
+}
+</script>
+
+</body>
+</html>

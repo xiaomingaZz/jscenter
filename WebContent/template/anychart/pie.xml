@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anychart> 
+	<settings>
+		<!-- 动画效果 -->
+		<animation enabled="false" />
+		<no_data show_waiting_animation="False">
+			<label enabled="True">
+				<text>没有数据</text>
+			</label>
+		</no_data>
+	</settings>
+	<margin all="-5"/>
+	<charts> 
+		<chart plot_type="Pie"> 
+ 			<data_plot_settings enable_3d_mode="true"> 
+ 				<pie_series>
+ 					<!-- 鼠标停留时显示的信息 -->
+ 					<tooltip_settings enabled="true"> 
+ 						<font size="12"></font>
+ 						<!-- 停留时显示的内容 -->
+ 						<format><![CDATA[{%Name}：{%YValue}{numDecimals: 0}({%YPercentOfSeries}{numDecimals: 2}%)]]></format>
+ 					</tooltip_settings> 
+ 				</pie_series> 
+ 			</data_plot_settings>
+ 			<!-- 数据来源 --> 
+ 			<data> 
+ 				<series name="Series 1" type="Pie">
+ 				  #foreach($data in $bqlist) 
+					<point name="$data.MC" y="$data.DATA" >	
+						<attributes>
+							<attribute name="DM">$data.DM</attribute>
+							<attribute name="MC">$data.MC</attribute>
+							<attribute name="DATA">$data.DATA</attribute>
+							<attribute name="objecttype">$data.objecttype</attribute>
+							<attribute name="fydm">$data.fydm</attribute>
+							<attribute name="baseId">$data.baseId</attribute>
+							<attribute name="sdate">$data.sdate</attribute>
+							<attribute name="edate">$data.edate</attribute>
+							<attribute name="colname">$data.colname</attribute>
+						</attributes>
+					</point>
+				  #end 
+ 				</series> 
+ 			</data> 
+ 			<chart_settings>
+ 				<title enabled="true" padding="5"><text>$title </text>
+ 				<font render_as_html="false" family="Microsoft YaHei" size="26" italic="False"  bold="True"  ></font>
+				
+ 				</title><!-- 标题设置 -->
+ 				<legend enabled="true" ignore_auto_item="True" position="right" align="center"><!-- 图例设置 -->
+					<!-- 设置图例中文字大小 -->
+					<font size="12"/>
+					<!-- 图例中显示内容 Icon、Name、Value(YValue)、YPercentOfSeries 或者point中attribute标签中设置的属性-->
+					<format><![CDATA[{%Icon} {%Name} ]]></format>
+					<template/>
+					<title enabled="false"/>
+					<columns_separator enabled="false"/>
+					<rows_separator enabled ="false"/>
+					<background enabled="false">
+						<inside_margin left="5" right="2"/>
+					</background>
+					<items>
+						<item source="Points"/>
+					</items>
+				</legend> 
+				<chart_background> 
+					<border enabled="false" thickness="1"/> 
+					<fill enabled="false" /> 
+					<effects enabled="false" /> 
+				</chart_background> 
+			</chart_settings> 
+		</chart> 
+	</charts> 
+</anychart>
