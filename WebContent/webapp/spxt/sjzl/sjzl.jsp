@@ -3,6 +3,7 @@
 <%@page import="tdh.frame.web.util.WebUtils"%>
 <%@page import="tdh.framework.util.StringUtils"%>
 <%@page import="java.text.SimpleDateFormat,tdh.util.CalendarUtil"%>
+<%@ page import="java.util.Calendar" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
@@ -15,7 +16,7 @@
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月");
 	String jssj = sdf.format(new Date());
 	String kssj = jssj.substring(0,4)+"年01月";
-	
+
 	String gzOption = "";
 %>
 <html>
@@ -35,8 +36,6 @@
 <link rel="stylesheet" href="<%=CONTEXT_PATH%>/resources/css/bootstrap.min.css" type="text/css" />
 <script type='text/javascript' src='<%=CONTEXT_PATH%>/resources/loadmask/jquery.loadmask.js'></script>
 <script type='text/javascript' src='<%=CONTEXT_PATH%>/resources/js/bootstrap.min.js'></script>
-<script src="<%=CONTEXT_PATH%>/resources/DatePicker/WdatePicker.js"></script>
-
 </head>
 <body>
 <%
@@ -47,8 +46,8 @@
 <div style="width: 30%;height: 40px">
 	<ul class="nav nav-tabs">
 		<li class="active" ><a  href="javascript:void(0);" style="color:black" onclick="sjjy()">数据校验</a></li>
-		<li><a href="#" style="color:black">xml监控</a></li>
-		<li><a href="#" style="color:black">解压监控</a></li>
+		<li><a href="#" style="color:black" onclick="jyJk()">xml监控</a></li>
+		<li><a href="#" style="color:black" onclick="jyJk()">解压监控</a></li>
 	</ul>
 </div>
 <div style="margin:0px 5px;padding: 0px;">
@@ -124,7 +123,9 @@
 						</tr>
 					</table> 
 	 	 			</div>
-	 	 			<div id="table" style="width:100%;height: 500px;overflow-y:auto;overflow-x:hidden;"></div>
+	 	 			<div id="table" style="width:100%;height: 500px;overflow-y:auto;overflow-x:hidden;">
+						<iframe id="mainContent" src="" width="100%" height="100%" scrolling="yes"></iframe>
+                    </div>
 				</div>
 			</td>
 		</tr>
@@ -150,7 +151,6 @@
 <script type="text/javascript">
 	var contextPath = '<%=CONTEXT_PATH%>';
 	var fydm = '<%=fydm%>';
-	
 	function bindRq() {
 		
 		$("#kssj").bind("click",function() {
@@ -168,7 +168,41 @@
 	}
 	
 	$(document).ready(function(){
+		bindRq();
+		//initTree([{'contentid':'ywcbContent','treeid':'ywcbTree','inputid':'ywcb','selected':['<%=fydm%>'],'expand':true,'hide':false,
+		//	'valueid':'ywcbValue','onClick':ywcbClick,'url':contextPath+'/webapp/spxt/sjzl/sjzl_tree.jsp?'+"FYDM="+fydm}]);
 
+		//initTree([{'contentid':'gzContent','treeid':'gz_tree','inputid':'gz_text','expand':true,'hide':true,
+		//	'valueid':'gz','url':contextPath+'/webapp/spxt/sjzl/sjzl_gz_tree.jsp'}]);
+
+		var wds = new Array();
+
+
+		wds.push({
+			'contentid':'ywcbContent',
+			'treeid':'ywcbTree',
+			'inputid':'ywcb',
+			'selected':['<%=fydm%>'],
+			'expand':true,
+			'hide':false,
+			'valueid':'ywcbValue',
+			'onClick':ywcbClick,
+			'url':contextPath+'/webapp/spxt/sjzl/sjzl_tree.jsp?'+"FYDM="+fydm
+		});
+
+		wds.push({
+			'contentid':'gz_content',
+			'treeid':'gz_tree',
+			'inputid':'gz_text',
+			'expand':true,
+			'hide':true,
+			'valueid':'gz',
+			'url':contextPath+'/webapp/spxt/sjzl/sjzl_gz_tree.jsp'
+		});
+
+		initTree(wds);
+
+		sizeChange(true);
 	});
 
 	function ywcbClick(value){
@@ -234,7 +268,7 @@
 	function doFc(fydm,gz,kssj,jssj){
 		window.open('fc/sjzl_fc.jsp?fy='+fydm+'&gz='+gz+'&kssj='+kssj+'&jssj='+jssj);
 	}
-	
+
 </script>
 <script type='text/javascript' src='<%=CONTEXT_PATH%>/resources/js/tm1.js'></script>
 </html>

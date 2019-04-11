@@ -26,7 +26,7 @@ Ext.onReady(function() {
 	var Sm3 = new Ext.grid.CheckboxSelectionModel({
 		singleSelect:false//可多选
 	});
-	treeLoader = new Ext.tree.TreeLoader({
+	/*treeLoader = new Ext.tree.TreeLoader({
 		url:'../pub/citytree.jsp', 
 		baseParams: {
 		},
@@ -56,7 +56,7 @@ Ext.onReady(function() {
 				DjSearch(node.id);
 			}
 		}
-	});
+	});*/
    
 	
 	
@@ -207,13 +207,13 @@ Ext.onReady(function() {
 				region:'north',
 				border:false,
 				height:67,
-				contentEl:'btTable'
-			}, 
+				contentEl:'table'
+			},
 			{   layout : "fit",
 				region:'center',
 				border:false,
 				items:rarGrid
-			},Grid3,Treepanel ] 
+			},Grid3]//,Treepanel ]
 		}],
 		listeners:{
 			afterrender : function(){

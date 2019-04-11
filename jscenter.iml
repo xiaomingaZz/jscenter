@@ -28,6 +28,16 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
-    <orderEntry type="library" name="antlr-2.7.6 (2)" level="project" />
+    <orderEntry type="library" name="antlr-2.7.6" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://D:/Tomcat/apache-tomcat-6.0.28/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://D:/Tomcat/apache-tomcat-6.0.28/lib" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
